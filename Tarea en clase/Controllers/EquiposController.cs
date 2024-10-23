@@ -34,7 +34,7 @@ namespace Tarea_en_clase.Controllers
             }
 
             var equipo = await _context.Equipo
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.IdEquipo == id);
             if (equipo == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace Tarea_en_clase.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Ciudad,Titulos,AceptaExtra")] Equipo equipo)
         {
-            if (id != equipo.Id)
+            if (id != equipo.IdEquipo)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Tarea_en_clase.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EquipoExists(equipo.Id))
+                    if (!EquipoExists(equipo.IdEquipo))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Tarea_en_clase.Controllers
             }
 
             var equipo = await _context.Equipo
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.IdEquipo == id);
             if (equipo == null)
             {
                 return NotFound();
@@ -151,7 +151,7 @@ namespace Tarea_en_clase.Controllers
 
         private bool EquipoExists(int id)
         {
-            return _context.Equipo.Any(e => e.Id == id);
+            return _context.Equipo.Any(e => e.IdEquipo == id);
         }
     }
 }

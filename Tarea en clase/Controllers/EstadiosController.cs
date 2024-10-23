@@ -34,7 +34,7 @@ namespace Tarea_en_clase.Controllers
             }
 
             var estadio = await _context.Estadio
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.IdEstadio == id);
             if (estadio == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace Tarea_en_clase.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Direccion,Ciudad,Capacidad")] Estadio estadio)
         {
-            if (id != estadio.Id)
+            if (id != estadio.IdEstadio)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Tarea_en_clase.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EstadioExists(estadio.Id))
+                    if (!EstadioExists(estadio.IdEstadio))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Tarea_en_clase.Controllers
             }
 
             var estadio = await _context.Estadio
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.IdEstadio == id);
             if (estadio == null)
             {
                 return NotFound();
@@ -151,7 +151,7 @@ namespace Tarea_en_clase.Controllers
 
         private bool EstadioExists(int id)
         {
-            return _context.Estadio.Any(e => e.Id == id);
+            return _context.Estadio.Any(e => e.IdEstadio == id);
         }
     }
 }
