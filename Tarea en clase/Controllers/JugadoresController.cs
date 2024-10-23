@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tarea_en_clase.Data;
 using Tarea_en_clase.Models;
@@ -20,9 +19,24 @@ namespace Tarea_en_clase.Controllers
         }
 
         // GET: Jugadores
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string equipo)
         {
-            return View(await _context.Jugadores.ToListAsync());
+            var jugadores = _context.Jugadores.AsQueryable();
+
+            // Filtrar por equipo si se proporciona
+            if (!string.IsNullOrEmpty(equipo))
+            {
+                jugadores = jugadores.Where(j => j.NombreDeEquipo == equipo);
+            }
+
+            // Obtener la lista de equipos únicos para el filtro
+            ViewData["Equipos"] = await _context.Jugadores
+                .Select(j => j.NombreDeEquipo)
+                .Distinct()
+                .ToListAsync();
+
+            // Retornar la vista con los jugadores filtrados o todos
+            return View(await jugadores.ToListAsync());
         }
 
         // GET: Jugadores/Details/5
@@ -50,8 +64,6 @@ namespace Tarea_en_clase.Controllers
         }
 
         // POST: Jugadores/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Posicion,Edad,NombreDeEquipo")] Jugadores jugadores)
@@ -82,8 +94,6 @@ namespace Tarea_en_clase.Controllers
         }
 
         // POST: Jugadores/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Posicion,Edad")] Jugadores jugadores)
