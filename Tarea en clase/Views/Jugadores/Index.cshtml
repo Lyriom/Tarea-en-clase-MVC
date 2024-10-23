@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Tarea_en_clase.Models.Jugadores>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista";
 }
 
 <h1>Index</h1>
@@ -21,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Edad)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDeEquipo)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,6 +39,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Edad)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreDeEquipo)
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

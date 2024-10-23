@@ -54,7 +54,7 @@ namespace Tarea_en_clase.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Direccion,Ciudad,Capacidad")] Estadio estadio)
+        public async Task<IActionResult> Create([Bind("Id,Direccion,Ciudad,Nombre,Capacidad")] Estadio estadio)
         {
             if (ModelState.IsValid)
             {

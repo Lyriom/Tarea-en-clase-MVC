@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tarea_en_clase.Data;
 
@@ -10,9 +11,11 @@ using Tarea_en_clase.Data;
 namespace Tarea_en_clase.Migrations
 {
     [DbContext(typeof(Tarea_en_claseContext))]
-    partial class Tarea_en_claseContextModelSnapshot : ModelSnapshot
+    [Migration("20241023040114_Subida10")]
+    partial class Subida10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,6 +38,9 @@ namespace Tarea_en_clase.Migrations
                     b.Property<string>("Ciudad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdEstadio")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -68,10 +74,6 @@ namespace Tarea_en_clase.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("IdEstadio");
 
                     b.ToTable("Estadio");
@@ -88,11 +90,10 @@ namespace Tarea_en_clase.Migrations
                     b.Property<int>("Edad")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdEquipo")
+                        .HasColumnType("int");
 
-                    b.Property<string>("NombreDeEquipo")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -10,9 +10,7 @@ namespace Tarea_en_clase.Models
         public string Name { get; set; }
         public string Posicion { get; set; }
         public int Edad {  get; set; }
-
-        [ForeignKey("Equipo")]
-        public string IdEquipo { get; set; }
+        public string NombreDeEquipo { get; set; }
 
 
     }

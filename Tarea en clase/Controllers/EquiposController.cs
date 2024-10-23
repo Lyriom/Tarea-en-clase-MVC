@@ -86,7 +86,7 @@ namespace Tarea_en_clase.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Ciudad,Titulos,AceptaExtra")] Equipo equipo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Ciudad,Titulos,AceptaExtra,IdEstadio")] Equipo equipo)
         {
             if (id != equipo.IdEquipo)
             {

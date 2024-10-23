@@ -12,8 +12,7 @@ namespace Tarea_en_clase.Models
         public string Ciudad { get; set; }
         public string Titulos { get; set; }
         public bool AceptaExtra { get; set; }
-        [ForeignKey("Estadio")]
-        public string IdEstadio { get; set; }
+        
 
     }
 }
