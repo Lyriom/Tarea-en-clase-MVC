@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Tarea_en_clase.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<Tarea_en_claseContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Tarea_en_claseContext") ?? throw new InvalidOperationException("Connection string 'Tarea_en_claseContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
